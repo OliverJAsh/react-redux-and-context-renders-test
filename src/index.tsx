@@ -43,9 +43,10 @@ const Item: React.FC<ItemProps> = ({ windowWidth }) => {
 };
 const ItemConnected = itemConnect(Item);
 
-const gridConnect = connect((state: State) => ({
+const gridMapStateToProps = (state: State) => ({
     windowWidth: getWindowWidth(state),
-}));
+});
+const gridConnect = connect(gridMapStateToProps);
 type GridProps = ConnectedProps<typeof gridConnect>;
 const Grid: React.FC<GridProps> = ({ windowWidth }) => {
     console.log('Grid', { windowWidth });
