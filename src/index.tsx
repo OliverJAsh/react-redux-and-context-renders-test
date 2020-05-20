@@ -67,7 +67,7 @@ const GridWrapper: React.FC<GridWrapperProps> = ({ windowWidth }) => {
     console.log('GridWrapper', { windowWidth });
     return <GridConnected />;
 };
-const GridWrapperWrapper = gridWrapperConnect(GridWrapper);
+const GridWrapperConnected = gridWrapperConnect(GridWrapper);
 
 class AppOutside extends React.Component<{}, { isEnhanced: boolean }> {
     state = { isEnhanced: isEnhancedContextDefaultValue };
@@ -96,7 +96,7 @@ class AppInside extends React.Component {
         });
     }
     render() {
-        return <GridWrapperWrapper />;
+        return <GridWrapperConnected />;
     }
 }
 
