@@ -112,4 +112,4 @@ const el = (
     </AppOutside>
 );
 
-ReactDOM.render(el, document.body);
+ReactDOM.render(el, document.querySelector('#root'));
