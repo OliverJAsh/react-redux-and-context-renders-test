@@ -37,6 +37,7 @@ const Item: React.FC = () => {
     console.log('Item', { windowWidth });
     return null;
 };
+const ItemMemo = React.memo(Item);
 
 const gridConnect = connect((state: State) => ({
     windowWidth: getWindowWidth(state),
@@ -46,7 +47,7 @@ const Grid: React.FC<GridProps> = ({ windowWidth }) => {
     console.log('Grid', { windowWidth });
     return (
         <IsEnhancedContext.Consumer>
-            {(isEnhanced) => (isEnhanced ? <Item /> : null)}
+            {(isEnhanced) => (isEnhanced ? <ItemMemo /> : null)}
         </IsEnhancedContext.Consumer>
     );
 };
