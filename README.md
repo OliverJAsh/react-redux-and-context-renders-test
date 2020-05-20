@@ -1,4 +1,4 @@
-# NAME
+# react-redux-and-context-renders-test
 
 ## Development
 
