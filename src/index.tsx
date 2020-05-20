@@ -4,6 +4,10 @@ import { connect, ConnectedProps, Provider, useSelector } from 'react-redux';
 import { createStore } from 'redux';
 import { unstable_trace as trace } from 'scheduler/tracing';
 
+/**
+ * Problem: `Item` is rendered with the new `windowWidth` before its parent, `Grid`.
+ */
+
 const isEnhancedContextValue = false;
 const IsEnhancedContext = React.createContext(isEnhancedContextValue);
 
