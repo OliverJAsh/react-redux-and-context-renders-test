@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { connect, ConnectedProps, Provider, useSelector } from 'react-redux';
+import { connect, ConnectedProps, Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { unstable_trace as trace } from 'scheduler/tracing';
 
@@ -32,12 +32,16 @@ const store = createStore(reducer);
 //
 //
 
-const Item: React.FC = () => {
-    const windowWidth = useSelector(getWindowWidth);
+const itemMapStateToProps = (state: State) => ({
+    windowWidth: getWindowWidth(state),
+});
+const itemConnect = connect(itemMapStateToProps);
+type ItemProps = ConnectedProps<typeof itemConnect>;
+const Item: React.FC<ItemProps> = ({ windowWidth }) => {
     console.log('Item', { windowWidth });
     return null;
 };
-const ItemMemo = React.memo(Item);
+const ItemConnected = itemConnect(Item);
 
 const gridConnect = connect((state: State) => ({
     windowWidth: getWindowWidth(state),
@@ -47,7 +51,7 @@ const Grid: React.FC<GridProps> = ({ windowWidth }) => {
     console.log('Grid', { windowWidth });
     return (
         <IsEnhancedContext.Consumer>
-            {(isEnhanced) => (isEnhanced ? <ItemMemo /> : null)}
+            {(isEnhanced) => (isEnhanced ? <ItemConnected /> : null)}
         </IsEnhancedContext.Consumer>
     );
 };
