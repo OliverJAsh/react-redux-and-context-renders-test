@@ -8,8 +8,8 @@ import { unstable_trace as trace } from 'scheduler/tracing';
  * Problem: `Item` is rendered with the new `windowWidth` before its parent, `Grid`.
  */
 
-const isEnhancedContextValue = false;
-const IsEnhancedContext = React.createContext(isEnhancedContextValue);
+const isEnhancedContextDefaultValue = false;
+const IsEnhancedContext = React.createContext(isEnhancedContextDefaultValue);
 
 type State = { windowWidth: number | null };
 type Action = { type: 'SetWindowWidth'; windowWidth: number };
@@ -69,7 +69,7 @@ const GridWrapper: React.FC<GridWrapperProps> = ({ windowWidth }) => {
 const GridWrapperWrapper = gridWrapperConnect(GridWrapper);
 
 class AppOutside extends React.Component<{}, { isEnhanced: boolean }> {
-    state = { isEnhanced: isEnhancedContextValue };
+    state = { isEnhanced: isEnhancedContextDefaultValue };
 
     componentDidMount() {
         trace('isEnhanced: true', performance.now(), () => {
